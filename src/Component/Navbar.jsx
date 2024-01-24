@@ -3,7 +3,7 @@ import { Search , ChevronDown , BadgePercent , LifeBuoy , User , ShoppingBag } f
 import logo from '../assets/logo.svg'
 const Navbar = () => {
   return (
-    <div className="py-4 px-8 flex items-center justify-between ">
+    <div className="py-5 px-8 flex items-center justify-between ">
     <div className='flex gap-6 items-center'>
     <div>
       <img className='h-14 w-14' src={logo} alt="" />
