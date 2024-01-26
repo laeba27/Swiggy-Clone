@@ -21,7 +21,7 @@ function App() {
 
   const datafetch = async () => {
     const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4623019&lng=77.0409548&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4829599&lng=76.9067451&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const jsondata = await response.json();
 
@@ -31,15 +31,15 @@ function App() {
     settitle(jsondata?.data?.cards[1]?.card?.card?.title);
 
     setrestaurants(
-      jsondata?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      jsondata?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
     setfilterArray(
-      jsondata?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      jsondata?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
-    setfiltercategorydata(jsondata?.data?.cards[3]?.card?.card)
-   console.log(jsondata?.data?.cards[3]?.card?.card
+    setfiltercategorydata(jsondata?.data?.cards[2]?.card?.card)
+   console.log(jsondata
     )
   };
 
@@ -98,14 +98,14 @@ function App() {
               {category.length > 0
                 ? category.map((item, index) => (
                     <Categorycard
-                      key={index}
+                      key={item?.id}
                       carditem={item}
                       url={
                         "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
                       }
                     />
                   ))
-                : Array.from({ length: 19 }).map(() => <CategoryShimmer />)}
+                : Array.from({ length: 19 }).map((index) => <CategoryShimmer key={index} />)}
             </div>
           </div>
 
