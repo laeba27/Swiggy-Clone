@@ -1,11 +1,11 @@
 import { Star } from "lucide-react"
+import { Link } from "react-router-dom";
 
 const RestaurantsCard = ({url, item}) => {
+  
   return (
-    <div>
-      <div className='w-[248px] '>
-                
-                
+    <Link to={`/restaurants/${item?.info?.id}`}>
+      <div className='w-[248px] cursor-pointer '>   
                 <div className='relative'>
                   <img className='h-[161px] w-[248px]  rounded-2xl object-cover' src={url + item?.info?.cloudinaryImageId} alt="" />
                   <h3 className='absolute z-20 bottom-0 w-full text-lg mb-2 text-center font-extrabold text-white'>{item?.info?.aggregatedDiscountInfoV3 &&  (item?.info?.aggregatedDiscountInfoV3?.header + " " + item?.info?.aggregatedDiscountInfoV3?.subHeader)}</h3>
@@ -26,7 +26,7 @@ const RestaurantsCard = ({url, item}) => {
                 </div>
               
               </div>
-    </div>
+    </Link>
   )
 }
 
