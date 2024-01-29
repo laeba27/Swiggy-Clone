@@ -13,34 +13,31 @@ function App() {
   const [title, settitle] = useState(" ");
   const [restaurants, setrestaurants] = useState([]);
   const [filterArray, setfilterArray] = useState([]);
-  const [isfilter, setisfilter] = useState(true);
+  const [isfilter, setisfilter] = useState(false);
   const [filtercategorydata, setfiltercategorydata] = useState({ })
 
-  const cloudaniryurl =
-    "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
   const datafetch = async () => {
     const response = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4829599&lng=76.9067451&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.4623019&lng=77.0409548&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const jsondata = await response.json();
 
     setcategory(
       jsondata?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle?.info
     );
-    settitle(jsondata?.data?.cards[1]?.card?.card?.title);
+    settitle(jsondata?.data?.cards[2]?.card?.card?.title);
 
     setrestaurants(
-      jsondata?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
+      jsondata?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
     setfilterArray(
-      jsondata?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle
+      jsondata?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
-    setfiltercategorydata(jsondata?.data?.cards[2]?.card?.card)
-   console.log(jsondata
-    )
+    setfiltercategorydata(jsondata?.data?.cards[3]?.card?.card)
+   console.log(jsondata?.data)
   };
 
   useEffect(() => {
@@ -95,7 +92,7 @@ function App() {
               Laeba, {"what's"} on your mind?
             </h1>
             <div className="flex gap-3 overflow-x-auto max-w-[68rem] mx-auto ">
-              {category.length > 0
+              {category && category.length > 0
                 ? category.map((item, index) => (
                     <Categorycard
                       key={item?.id}
