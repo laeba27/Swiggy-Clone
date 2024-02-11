@@ -1,7 +1,6 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const CusiniesComp = ({ item }) => {
+const CusiniesComp = ({ item, onApplyFilter }) => {
   const [checkboxStates, setCheckboxStates] = useState(
     Array(item?.facetList[1]?.facetInfo?.length).fill(false)
   );
@@ -12,11 +11,23 @@ const CusiniesComp = ({ item }) => {
       newStates[index] = !newStates[index];
       return newStates;
     });
+    const updatedFilters = item?.facetList[1]?.facetInfo
+    .filter((_, i) => newStates[i])
+    .map((sortItem) => sortItem.label);
+
+  setSelectedFilters(updatedFilters);
+
   };
+
+   
+
+  
   return (
     <div className="flex flex-col gap-3 p-5 h-[400px] overflow-y-scroll">
       <div className="mx-4 ">
-        <h5 className="text-base font-light py-3 text-gray-500">FILTER BY CUISINE</h5>
+        <h5 className="text-base font-light py-3 text-gray-500">
+          FILTER BY CUISINE
+        </h5>
         {item?.facetList[1]?.facetInfo.map((sortItem, index) => {
           return (
             <div key={index} className="flex items-center gap-2 ">

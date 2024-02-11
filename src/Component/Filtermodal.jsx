@@ -8,14 +8,21 @@ import RatingComp from "./RatingComp";
 import Veg from "./Veg";
 import Offers from "./Offers";
 import CostForTwo from "./CostForTwo";
-
+import "../App.css"
 const Filtermodal = (props) => {
+
+  const [selectedFilters, setSelectedFilters] = useState([]);
+  const [filtersort, setfiltersort] = useState("sort")
+  
   if (!props.filtercategory) {
     return null; // or render a loading state or handle accordingly
   }
 console.log(props.filtercategory);
- const [filtersort, setfiltersort] = useState("sort")
  
+ 
+ const clearFilters = () => {
+  setSelectedFilters([]);
+};
 
  const activelink =(link)=>{
   setfiltersort(link)
@@ -24,7 +31,8 @@ console.log(props.filtercategory);
 
   
   return (
-    <div className="h-[455px]  w-[720px] bg-white z-40  rounded-2xl overflow-hidden ">
+    <div className="h-[455px]  w-[720px] bg-white z-40  rounded-2xl overflow-hidden relative">
+      <div className=" h-[455px]  w-[720px] bg-white z-40  rounded-2xl overflow-hidden ">
       <div className="flex justify-between h-[55px] items-center px-4">
         <h1 className="text-2xl font-bold">Filter</h1>
         <div
@@ -77,7 +85,16 @@ console.log(props.filtercategory);
     }})()}
         </div>
       </div>
+      
     </div>
+    <div className="  h-[60px] w-full z-20 absolute bottom-0 shadow-custom flex items-center gap-20 justify-end px-3"> 
+    <div onClick={clearFilters} className="text-xl text-orange-600 cursor-pointer font-medium">Clear Filter</div>
+    <div className=" py-2">
+    <button className="bg-orange-600 text-white font-light text-xl px-16 py-2 rounded-xl cursor-pointer  ">Apply </button>
+    </div>
+    </div>
+    </div>
+    
   );
 };
 

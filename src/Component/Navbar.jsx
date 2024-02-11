@@ -1,7 +1,12 @@
 
 import { Search , ChevronDown , BadgePercent , LifeBuoy , User , ShoppingBag } from 'lucide-react';
 import logo from '../assets/logo.svg'
+import { Link } from 'react-router-dom';
+import { useAppContext } from '../../utils/GlobalContext';
 const Navbar = () => {
+
+  const {user,cartitem} = useAppContext()
+
   return (
     <div className="py-5 px-8 flex items-center justify-between ">
     <div className='flex gap-6 items-center'>
@@ -24,18 +29,18 @@ const Navbar = () => {
         <BadgePercent className='h-4 w-4' />
         <h3>Offers</h3>
         </div>
-        <div className='flex items-center gap-2  hover:text-orange-400  cursor-pointer '>
+        {/* <div className='flex items-center gap-2  hover:text-orange-400  cursor-pointer '>
         <LifeBuoy className='h-4 w-4' />
         <h3>Cart</h3>
-        </div>
+        </div> */}
         <div className='flex items-center gap-2  hover:text-orange-400 cursor-pointer  '>
         <User className='h-4 w-4' />
-        <h3>Laeba</h3>
+        <h3>{user}</h3>
         </div>
-        <div className='flex items-center gap-2  hover:text-orange-400 cursor-pointer '>
+        <Link to="/cart" className='flex items-center gap-2  hover:text-orange-400 cursor-pointer '>
         <ShoppingBag className='h-4 w-4' />
-        <h3>Cart</h3>
-        </div>
+        <h3>Carts{cartitem.length>0? cartitem.length : ""}</h3>
+        </Link>
     </div>
       
     </div>

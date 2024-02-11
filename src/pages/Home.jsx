@@ -113,6 +113,7 @@ const Home = () => {
         <div className="mt-8 max-w-[68rem] mx-auto">
           <h1 className="text-2xl font-bold ">{title}</h1>
           <div className="flex w-full justify-between  gap-2 items-center overflow-x-auto overflow-y-hidden  mt-3 pt-5 ">
+            {/* filter div will open when i click on the filter button  */}
             <div
               onClick={handlefiltermodal}
               className="relative cursor-pointer flex items-center gap-1 px-3 py-1 border rounded-3xl border-slate-300 flex-shrink-0"
