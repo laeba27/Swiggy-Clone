@@ -8,15 +8,15 @@ import { BadgeIndianRupee } from "lucide-react";
 import { BadgePercent } from "lucide-react";
 import { ChevronDown } from "lucide-react";
 import VarietyMenu from "../Component/VarietyMenu";
-
+import { useAppContext } from '../../utils/GlobalContext'
 
 const RestrauntMenu = () => {
   const { id } = useParams();
   const [restrauntmenu, setrestrauntmenu] = useState({});
   const [isloading, setisloading] = useState(true);
   const [activeIndex, setActiveIndex] = useState(true); // Initialize with -1 to keep all sections open by default
-  const [showVegOnly, setShowVegOnly] = useState(false); // Initialize to show all items by default
  
+  const { showVegOnly, toggleVeg } = useAppContext();
 
   const fetchmenu = async () => {
     setisloading(true);
@@ -35,9 +35,7 @@ const RestrauntMenu = () => {
   };
   
 
-  const toggleveg = ()=>{
-    setShowVegOnly(restrauntmenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.card?.card?.info?.isVeg)
-  }
+  
   useEffect(() => {
     fetchmenu();
   }, []);
@@ -163,17 +161,20 @@ const RestrauntMenu = () => {
 
 
 {/* veg only toggle button */}
+
+ 
           <div  className="flex items-center gap-4 pt-10">
             <h3 className="font-semibold">Veg only</h3>
             <div id="app">
               <label className="checker">
               <input
-              onClick={toggleveg}
-                type="checkbox"
-                className="checkbox"
-                checked={showVegOnly}
-                onChange={(e) => setShowVegOnly(e.target.checked)}
+              
+            type="checkbox"
+            className="checkbox"
+            checked={showVegOnly}
+                onChange={() => {}}
               />
+             
                 <div className="check-bg"></div>
                 <div className="checkmark">
                   <svg viewBox="0 0 100 100">
@@ -219,6 +220,7 @@ const RestrauntMenu = () => {
               item={section?.card?.card?.itemCards}
               url={"https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"}
             />
+            
           </div>
             )}
       </div>

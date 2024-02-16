@@ -39,7 +39,14 @@ const Navbar = () => {
         </div>
         <Link to="/cart" className='flex items-center gap-2  hover:text-orange-400 cursor-pointer '>
         <ShoppingBag className='h-4 w-4' />
-        <h3>Carts{cartitem.length>0? cartitem.length : ""}</h3>
+        <div className='flex gap-2 items-center'>
+        <h3 className=''>Carts</h3>
+        <div className=' bg-green-600  w-5 h-5 rounded-[50%] text items-center justify-center flex'>
+        <h3 className='text-white text-sm'>{cartitem.length>0? cartitem.length : ""}</h3>
+        </div>
+        
+        </div>
+        
         </Link>
     </div>
       

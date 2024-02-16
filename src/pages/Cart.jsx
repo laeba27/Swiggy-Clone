@@ -6,7 +6,8 @@ import { useState, useEffect } from "react";
 const Cart = () => {
   const [totalprice, settotalprice] = useState(null);
   const [GSTPrice, setGSTPrice] = useState(null);
-
+ 
+  
   const url =
     "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
@@ -63,11 +64,18 @@ const Cart = () => {
           })}
         </div>
 
-        <div className="border border-gray-100 w-60">
-          <h1>Bill Details</h1>
-          <h3>Item Total</h3>
-          <h3>GST Bill {GSTPrice}</h3>
-          <h3>Total Ammount {totalprice}</h3>
+        <div className="border border-gray-100 py-3 px-5 w-60">
+          <h1 className="text-2xl font-bold pb-4">Bill Details</h1>
+          <h3 className="text-lg">Items Total </h3>
+          <div className="flex items-center justify-between"> 
+          <h3 className="text-lg">GST Bill</h3>
+          <h3 className="text-lg"> {GSTPrice}</h3>
+          </div>
+          <div className="flex items-center justify-between"> 
+          <h3 className="text-lg">Total Ammount</h3>
+          <h3 className="text-lg">  {totalprice}</h3>
+          </div>
+       
         </div>
       </div>
     </div>
