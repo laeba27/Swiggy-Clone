@@ -98,7 +98,7 @@ const Home = () => {
                     key={item?.id}
                     carditem={item}
                     url={
-                      "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
+                      "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
                     }
                   />
                 ))
@@ -171,7 +171,7 @@ const Home = () => {
                   key={item?.info?.id}
                   item={item}
                   url={
-                    "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
+                    "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"
                   }
                 />
               ))

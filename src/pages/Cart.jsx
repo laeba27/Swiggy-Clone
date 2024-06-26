@@ -8,8 +8,7 @@ const Cart = () => {
   const [GSTPrice, setGSTPrice] = useState(null);
  
   
-  const url =
-    "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
+  const url =  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
   const { cartitem, handleRemoveItem  } = useAppContext();
   console.log(cartitem);
