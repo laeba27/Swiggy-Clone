@@ -21,7 +21,7 @@ const RestrauntMenu = () => {
   const fetchmenu = async () => {
     setisloading(true);
     const res = await fetch(
-      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.4829599&lng=76.9067451&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
+      `https://proxy.cors.sh/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.4829599&lng=76.9067451&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     );
     const data = await res.json();
     setrestrauntmenu(data);
