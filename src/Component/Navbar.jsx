@@ -3,15 +3,19 @@ import { Search , ChevronDown , BadgePercent , LifeBuoy , User , ShoppingBag } f
 import logo from '../assets/logo.svg'
 import { Link } from 'react-router-dom';
 import { useAppContext } from '../../utils/GlobalContext';
+
 const Navbar = () => {
 
   const {user,cartitem} = useAppContext()
-
+  
   return (
     <div className="py-5 px-8 flex items-center justify-between ">
     <div className='flex gap-6 items-center'>
     <div>
-      <img className='h-14 w-14' src={logo} alt="" />
+    <Link to='/' >
+    <img className='h-14 w-14' src={logo} alt="" />
+    </Link>
+      
       </div>
       <div className='flex gap-3 items-center' >
         <h3 className='font-semibold underline underline-offset-8 text-sm'>Other </h3>
@@ -41,8 +45,8 @@ const Navbar = () => {
         <ShoppingBag className='h-4 w-4' />
         <div className='flex gap-2 items-center'>
         <h3 className=''>Carts</h3>
-        <div className=' bg-green-600  w-5 h-5 rounded-[50%] text items-center justify-center flex'>
-        <h3 className='text-white text-sm'>{cartitem.length>0? cartitem.length : ""}</h3>
+        <div className='   text items-center justify-center flex'>
+        <div className='text-white bg-green-600  px-2 rounded-full  text-sm'>{cartitem.length>0? cartitem.length : ""}</div>
         </div>
         
         </div>

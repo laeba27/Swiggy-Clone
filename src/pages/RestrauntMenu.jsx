@@ -14,24 +14,31 @@ const RestrauntMenu = () => {
   const { id } = useParams();
   const [restrauntmenu, setrestrauntmenu] = useState({});
   const [isloading, setisloading] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(true); // Initialize with -1 to keep all sections open by default
+  const [activeIndex, setActiveIndex] = useState(null); // Initialize with -1 to keep all sections open by default
  
   const { showVegOnly, toggleVeg } = useAppContext();
 
-  const fetchmenu = async () => {
+  const fetchmenu = () => {
     setisloading(true);
-    const res = await fetch(
+  
+    fetch(
       `https://proxy.cors.sh/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.4829599&lng=76.9067451&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
-    );
-    const data = await res.json();
-    setrestrauntmenu(data);
-    
-    setisloading(false);
-    console.log(restrauntmenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards);
+    )
+    .then(res => res.json())
+    .then(data => {
+      setrestrauntmenu(data);
+      console.log(data,"data");
+      setisloading(false);
+    })
+    .catch(error => {
+      console.error('Error fetching menu:', error);
+      setisloading(false);
+    });
   };
 
-  const toggleAccordion = (index) => {
-    setActiveIndex((prevIndex) => (prevIndex === index ? -1 : index)); // Close if already open, otherwise open the clicked index
+  const toggleAccordion = (index, section) => {
+    console.log(section, index, "section");
+    setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
   
 
@@ -55,10 +62,10 @@ const RestrauntMenu = () => {
             </h5>
             <h5 className="text-[0.65rem] text-gray-500">/</h5>
             <h5 className="text-[0.65rem] text-gray-500  hover:text-black cursor-pointer">
-              {restrauntmenu?.data?.cards[0]?.card?.card?.info?.city}
+              {restrauntmenu?.data?.cards[0]?.card?.card?.text}
             </h5>
             <h5 className="text-[0.65rem] text-gray-500">/</h5>
-            <h5 className="text-[0.65rem]">KFC</h5>
+            
           </div>
         </div>
         {/* first section */}
@@ -67,18 +74,18 @@ const RestrauntMenu = () => {
             <div>
               <div>
                 <h1 className="text-lg py-2 font-bold">
-                  {restrauntmenu?.data?.cards[0]?.card?.card?.info?.name}
+                  {restrauntmenu?.data?.cards[0]?.card?.card?.text}
                 </h1>
               </div>
               <div>
                 <h1 className="text-xs font-light pb-2 text-[#5f5e5ed0]">
                   {
-                    restrauntmenu?.data?.cards[0]?.card?.card?.info?.labels[2]
+                    restrauntmenu?.data?.cards[2]?.card?.card?.info?.labels[2]
                       ?.message
                   }
                 </h1>
                 <h1 className="text-xs font-light text-[#5f5e5ed0]">
-                  {restrauntmenu?.data?.cards[0]?.card?.card?.info?.areaName}
+                  {restrauntmenu?.data?.cards[2]?.card?.card?.info?.areaName}
                 </h1>
               </div>
             </div>
@@ -88,7 +95,7 @@ const RestrauntMenu = () => {
                 <Star className="h-4  text-green-600" />
                 <h1 className="  text-sm text-green-600 font-bold">
                   {
-                    restrauntmenu?.data?.cards[0]?.card?.card?.info
+                    restrauntmenu?.data?.cards[2]?.card?.card?.info
                       ?.avgRatingString
                   }
                 </h1>
@@ -97,7 +104,7 @@ const RestrauntMenu = () => {
               <div className="pt-2">
                 <h1 className="text-xs text-[#5f5e5ed0] py-2 tracking-[-0.07em]">
                   {
-                    restrauntmenu?.data?.cards[0]?.card?.card?.info
+                    restrauntmenu?.data?.cards[2]?.card?.card?.info
                       ?.totalRatingsString
                   }
                 </h1>
@@ -117,7 +124,7 @@ const RestrauntMenu = () => {
               <BadgeIndianRupee className="h-5" />
               <h3 className="font-extrabold">
                 {
-                  restrauntmenu?.data?.cards[0]?.card?.card?.info
+                  restrauntmenu?.data?.cards[2]?.card?.card?.info
                     ?.costForTwoMessage
                 }
               </h3>
@@ -126,7 +133,7 @@ const RestrauntMenu = () => {
 
           {/* blocks in second section */}
           <div className="flex gap-5">
-            {restrauntmenu?.data?.cards[0]?.card?.card?.info?.aggregatedDiscountInfo?.descriptionList.map(
+            {restrauntmenu?.data?.cards[2]?.card?.card?.info?.aggregatedDiscountInfo?.descriptionList.map(
               (item, index) => {
                 return (
                   <div
@@ -199,30 +206,28 @@ const RestrauntMenu = () => {
 
       {/* for accordion menu of the specifc category */}
       <div>
-  {restrauntmenu?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.map((section, index) => (
+  {restrauntmenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.map((section, index) => (
     section?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" && (
       <div key={index} className="mb-4">
         <div
           className={`w-full text-left p-4 flex justify-between outline-none transition duration-300`}
-          onClick={() => toggleAccordion(index)}
         >
           <h1 className="text-lg font-bold">{section?.card?.card?.title}</h1>
           <button onClick={(e) => {
-            toggleAccordion(index); // Toggle accordion state
+            e.stopPropagation(); // Prevent event bubbling
+            toggleAccordion(index, section);
           }}>
             <ChevronDown />
           </button>
         </div>
-        { activeIndex === true && (
-                  
+        {activeIndex === index && (
           <div className="bg-white">
             <VarietyMenu
               item={section?.card?.card?.itemCards}
               url={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"}
             />
-            
           </div>
-            )}
+        )}
       </div>
     )
   ))}
