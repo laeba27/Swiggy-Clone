@@ -9,7 +9,8 @@ const Navbar = () => {
   const {user,cartitem} = useAppContext()
   
   return (
-    <div className="py-5 px-8 flex items-center justify-between ">
+    <div className=" shadow-lg w-full ">
+    <div className='py-5 px-16 flex items-center justify-between '>
     <div className='flex gap-6 items-center'>
     <div>
     <Link to='/' >
@@ -25,10 +26,12 @@ const Navbar = () => {
     </div>
 
     <div className='flex items-center gap-16 '>
+    <Link to='/search'>
         <div className='flex items-center gap-2 hover:text-orange-400  cursor-pointer '>
         <Search className='h-4 w-4' />
         <h3>Search</h3>
         </div>
+        </Link>
         <div className='flex items-center gap-2  hover:text-orange-400 cursor-pointer '>
         <BadgePercent className='h-4 w-4' />
         <h3>Offers</h3>
@@ -53,6 +56,8 @@ const Navbar = () => {
         
         </Link>
     </div>
+    </div>
+    
       
     </div>
   )

@@ -20,9 +20,9 @@ const RestrauntMenu = () => {
 
   const fetchmenu = () => {
     setisloading(true);
-  
+    // https://proxy.cors.sh/
     fetch(
-      `https://proxy.cors.sh/https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.4829599&lng=76.9067451&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
+      `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.4829599&lng=76.9067451&restaurantId=${id}&catalog_qa=undefined&submitAction=ENTER`
     )
     .then(res => res.json())
     .then(data => {
@@ -51,193 +51,198 @@ const RestrauntMenu = () => {
     return <p>loading.......</p>;
   }
   return (
-    <div className="max-w-7xl mx-auto">
+    <div>
       <Navbar />
-      {/* {restrauntmenu?.data?.cards[0]?.card?.card?.info?.name} */}
-      <div className="px-64">
-        <div className="">
-          <div className="flex items-center gap-1">
-            <h5 className="text-[0.65rem] text-gray-500  hover:text-black cursor-pointer">
-              Home
-            </h5>
-            <h5 className="text-[0.65rem] text-gray-500">/</h5>
-            <h5 className="text-[0.65rem] text-gray-500  hover:text-black cursor-pointer">
-              {restrauntmenu?.data?.cards[0]?.card?.card?.text}
-            </h5>
-            <h5 className="text-[0.65rem] text-gray-500">/</h5>
-            
-          </div>
+      <div className="max-w-7xl mx-auto">
+    
+  
+    {/* {restrauntmenu?.data?.cards[0]?.card?.card?.info?.name} */}
+    <div className="px-64 pt-6">
+      <div className="">
+        <div className="flex items-center gap-1">
+          <h5 className="text-[0.65rem] text-gray-500  hover:text-black cursor-pointer">
+            Home
+          </h5>
+          <h5 className="text-[0.65rem] text-gray-500">/</h5>
+          <h5 className="text-[0.65rem] text-gray-500  hover:text-black cursor-pointer">
+            {restrauntmenu?.data?.cards[0]?.card?.card?.text}
+          </h5>
+          <h5 className="text-[0.65rem] text-gray-500">/</h5>
+          
         </div>
-        {/* first section */}
-        <div className="">
-          <div className="flex pt-8 border-b pb-5 border-dashed items-center justify-between">
+      </div>
+      {/* first section */}
+      <div className="">
+        <div className="flex pt-8 border-b pb-5 border-dashed items-center justify-between">
+          <div>
             <div>
-              <div>
-                <h1 className="text-lg py-2 font-bold">
-                  {restrauntmenu?.data?.cards[0]?.card?.card?.text}
-                </h1>
-              </div>
-              <div>
-                <h1 className="text-xs font-light pb-2 text-[#5f5e5ed0]">
-                  {
-                    restrauntmenu?.data?.cards[2]?.card?.card?.info?.labels[2]
-                      ?.message
-                  }
-                </h1>
-                <h1 className="text-xs font-light text-[#5f5e5ed0]">
-                  {restrauntmenu?.data?.cards[2]?.card?.card?.info?.areaName}
-                </h1>
-              </div>
+              <h1 className="text-lg py-2 font-bold">
+                {restrauntmenu?.data?.cards[0]?.card?.card?.text}
+              </h1>
             </div>
-
-            <div className="flex items-center justify-center flex-col border border-[#94919127] px-3 py-2 rounded-xl">
-              <div className="pb-2 flex items-center ">
-                <Star className="h-4  text-green-600" />
-                <h1 className="  text-sm text-green-600 font-bold">
-                  {
-                    restrauntmenu?.data?.cards[2]?.card?.card?.info
-                      ?.avgRatingString
-                  }
-                </h1>
-              </div>
-              <div className="h-[1px] w-full bg-[#94919127] "></div>
-              <div className="pt-2">
-                <h1 className="text-xs text-[#5f5e5ed0] py-2 tracking-[-0.07em]">
-                  {
-                    restrauntmenu?.data?.cards[2]?.card?.card?.info
-                      ?.totalRatingsString
-                  }
-                </h1>
-              </div>
+            <div>
+              <h1 className="text-xs font-light pb-2 text-[#5f5e5ed0]">
+                {
+                  restrauntmenu?.data?.cards[2]?.card?.card?.info?.labels[2]
+                    ?.message
+                }
+              </h1>
+              <h1 className="text-xs font-light text-[#5f5e5ed0]">
+                {restrauntmenu?.data?.cards[2]?.card?.card?.info?.areaName}
+              </h1>
             </div>
           </div>
-        </div>
 
-        {/* second section */}
-        <div>
-          <div className=" flex gap-6 py-5">
-            <div className="flex gap-1 items-center">
-              <Clock8 className="h-5" />
-              <h3 className="font-extrabold">25 MINS</h3>
-            </div>
-            <div className="flex gap-1 items-center">
-              <BadgeIndianRupee className="h-5" />
-              <h3 className="font-extrabold">
+          <div className="flex items-center justify-center flex-col border border-[#94919127] px-3 py-2 rounded-xl">
+            <div className="pb-2 flex items-center ">
+              <Star className="h-4  text-green-600" />
+              <h1 className="  text-sm text-green-600 font-bold">
                 {
                   restrauntmenu?.data?.cards[2]?.card?.card?.info
-                    ?.costForTwoMessage
+                    ?.avgRatingString
                 }
-              </h3>
+              </h1>
+            </div>
+            <div className="h-[1px] w-full bg-[#94919127] "></div>
+            <div className="pt-2">
+              <h1 className="text-xs text-[#5f5e5ed0] py-2 tracking-[-0.07em]">
+                {
+                  restrauntmenu?.data?.cards[2]?.card?.card?.info
+                    ?.totalRatingsString
+                }
+              </h1>
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* blocks in second section */}
-          <div className="flex gap-5">
-            {restrauntmenu?.data?.cards[2]?.card?.card?.info?.aggregatedDiscountInfo?.descriptionList.map(
-              (item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="relative  flex items-center border  border-[#94919127] py-2 px-1 w-[300px] rounded-xl "
-                  >
-                    <div className="">
-                      <h3 className=" text-[0.60rem] text-orange-600 transform rotate-90 md:-rotate-90">
-                        FLAT DEAL
+      {/* second section */}
+      <div>
+        <div className=" flex gap-6 py-5">
+          <div className="flex gap-1 items-center">
+            <Clock8 className="h-5" />
+            <h3 className="font-extrabold">25 MINS</h3>
+          </div>
+          <div className="flex gap-1 items-center">
+            <BadgeIndianRupee className="h-5" />
+            <h3 className="font-extrabold">
+              {
+                restrauntmenu?.data?.cards[2]?.card?.card?.info
+                  ?.costForTwoMessage
+              }
+            </h3>
+          </div>
+        </div>
+
+        {/* blocks in second section */}
+        <div className="flex gap-5">
+          {restrauntmenu?.data?.cards[2]?.card?.card?.info?.aggregatedDiscountInfo?.descriptionList.map(
+            (item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="relative  flex items-center border  border-[#94919127] py-2 px-1 w-[300px] rounded-xl "
+                >
+                  <div className="">
+                    <h3 className=" text-[0.60rem] text-orange-600 transform rotate-90 md:-rotate-90">
+                      FLAT DEAL
+                    </h3>
+                  </div>
+                  <div className="w-[1px] h-14 bg-[#94919127] "></div>
+
+                  <div className="pl-3 pr-10">
+                    <div className="flex items-center gap-1 ">
+                      <BadgePercent className="h-5" />
+                      <h3 className="font-bold uppercase text-sm text-gray-600">
+                        {item?.meta.split("|")[0]}
                       </h3>
                     </div>
-                    <div className="w-[1px] h-14 bg-[#94919127] "></div>
-
-                    <div className="pl-3 pr-10">
-                      <div className="flex items-center gap-1 ">
-                        <BadgePercent className="h-5" />
-                        <h3 className="font-bold uppercase text-sm text-gray-600">
-                          {item?.meta.split("|")[0]}
-                        </h3>
-                      </div>
-                      <div>
-                        <h3 className="text-gray-400 text-xs tracking-tighter ">
-                          {item?.meta.split("|")[1]}
-                        </h3>
-                      </div>
+                    <div>
+                      <h3 className="text-gray-400 text-xs tracking-tighter ">
+                        {item?.meta.split("|")[1]}
+                      </h3>
                     </div>
                   </div>
-                );
-              }
-            )}
-          </div>
+                </div>
+              );
+            }
+          )}
+        </div>
 
 
 {/* veg only toggle button */}
 
- 
-          <div  className="flex items-center gap-4 pt-10">
-            <h3 className="font-semibold">Veg only</h3>
-            <div id="app">
-              <label className="checker">
-              <input
-              
-            type="checkbox"
-            className="checkbox"
-            checked={showVegOnly}
-                onChange={() => {}}
-              />
-             
-                <div className="check-bg"></div>
-                <div className="checkmark">
-                  <svg viewBox="0 0 100 100">
-                    <path
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                      strokeWidth="15"
-                      stroke="#FFF"
-                      fill="none"
-                      d="M20,55 L40,75 L77,27"
-                    ></path>
-                  </svg>
-                </div>
-              </label>
-            </div>
-          </div>
-        </div>
-        <div className="h-[1px] my-8  w-full bg-[#94919127] "></div>
 
-        <div className="w-full">
-      
-
-      {/* for accordion menu of the specifc category */}
-      <div>
-  {restrauntmenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.map((section, index) => (
-    section?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" && (
-      <div key={index} className="mb-4">
-        <div
-          className={`w-full text-left p-4 flex justify-between outline-none transition duration-300`}
-        >
-          <h1 className="text-lg font-bold">{section?.card?.card?.title}</h1>
-          <button onClick={(e) => {
-            e.stopPropagation(); // Prevent event bubbling
-            toggleAccordion(index, section);
-          }}>
-            <ChevronDown />
-          </button>
-        </div>
-        {activeIndex === index && (
-          <div className="bg-white">
-            <VarietyMenu
-              item={section?.card?.card?.itemCards}
-              url={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"}
+        <div  className="flex items-center gap-4 pt-10">
+          <h3 className="font-semibold">Veg only</h3>
+          <div id="app">
+            <label className="checker">
+            <input
+            
+          type="checkbox"
+          className="checkbox"
+          checked={showVegOnly}
+              onChange={() => {}}
             />
+           
+              <div className="check-bg"></div>
+              <div className="checkmark">
+                <svg viewBox="0 0 100 100">
+                  <path
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="15"
+                    stroke="#FFF"
+                    fill="none"
+                    d="M20,55 L40,75 L77,27"
+                  ></path>
+                </svg>
+              </div>
+            </label>
           </div>
-        )}
+        </div>
       </div>
-    )
-  ))}
+      <div className="h-[1px] my-8  w-full bg-[#94919127] "></div>
+
+      <div className="w-full">
+    
+
+    {/* for accordion menu of the specifc category */}
+    <div>
+{restrauntmenu?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.map((section, index) => (
+  section?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory" && (
+    <div key={index} className="mb-4">
+      <div
+        className={`w-full text-left p-4 flex justify-between outline-none transition duration-300`}
+      >
+        <h1 className="text-lg font-bold">{section?.card?.card?.title}</h1>
+        <button onClick={(e) => {
+          e.stopPropagation(); // Prevent event bubbling
+          toggleAccordion(index, section);
+        }}>
+          <ChevronDown />
+        </button>
+      </div>
+      {activeIndex === index && (
+        <div className="bg-white">
+          <VarietyMenu
+            item={section?.card?.card?.itemCards}
+            url={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"}
+          />
+        </div>
+      )}
+    </div>
+  )
+))}
 </div>
 
-    </div>
- 
+  </div>
 
-      </div>
+
     </div>
+  </div>
+    </div>
+    
   );
 };
 
